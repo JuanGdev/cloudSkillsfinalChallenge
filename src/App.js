@@ -1,16 +1,5 @@
 import React, { useState } from 'react';
-
-function analyzeImage(imageUrl) {
-  // Add your logic for image analysis here
-  // This function should return a promise that resolves with the analysis result
-  return new Promise((resolve, reject) => {
-    // Simulating a delay of 2 seconds for the analysis
-    setTimeout(() => {
-      const analysisResult = 'Image analysis result';
-      resolve(analysisResult);
-    }, 2000);
-  });
-}
+import { analyzeImage } from './azure-image-analysis';
 
 function DisplayResults({ imageUrl, analysisResult }) {
   return (
@@ -20,6 +9,15 @@ function DisplayResults({ imageUrl, analysisResult }) {
       <p>Analysis Result: {analysisResult}</p>
     </div>
   );
+}
+
+function analyzeImage(imageUrl) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const analysisResult = 'Image analysis result';
+      resolve(analysisResult);
+    }, 2000);
+  });
 }
 
 function App() {
