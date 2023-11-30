@@ -12,6 +12,16 @@ function analyzeImage(imageUrl) {
   });
 }
 
+function DisplayResults({ imageUrl, analysisResult }) {
+  return (
+    <div>
+      <h2>Image Analysis Result</h2>
+      <p>Processed Image URL: {imageUrl}</p>
+      <p>Analysis Result: {analysisResult}</p>
+    </div>
+  );
+}
+
 function App() {
   const [imageUrl, setImageUrl] = useState('');
   const [analysisResult, setAnalysisResult] = useState('');
@@ -47,9 +57,13 @@ function App() {
       </button>
       <button onClick={handleImageGeneration}>Generate Image</button>
       {isAnalyzing && <p>Processing image analysis...</p>}
-      {analysisResult && <p>Analysis Result: {analysisResult}</p>}
+      {analysisResult && (
+        <DisplayResults imageUrl={imageUrl} analysisResult={analysisResult} />
+      )}
     </div>
   );
 }
 
 export default App;
+
+
