@@ -1,10 +1,32 @@
 import React, { useState } from 'react';
 
+function analyzeImage(imageUrl) {
+  // Add your logic for image analysis here
+  // This function should return a promise that resolves with the analysis result
+  return new Promise((resolve, reject) => {
+    // Simulating a delay of 2 seconds for the analysis
+    setTimeout(() => {
+      const analysisResult = 'Image analysis result';
+      resolve(analysisResult);
+    }, 2000);
+  });
+}
+
 function App() {
   const [imageUrl, setImageUrl] = useState('');
+  const [analysisResult, setAnalysisResult] = useState('');
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
 
-  const handleImageAnalysis = () => {
-    // Add your logic for image analysis here
+  const handleImageAnalysis = async () => {
+    setIsAnalyzing(true);
+    try {
+      const result = await analyzeImage(imageUrl);
+      setAnalysisResult(result);
+    } catch (error) {
+      console.error('Error occurred during image analysis:', error);
+    } finally {
+      setIsAnalyzing(false);
+    }
   };
 
   const handleImageGeneration = () => {
@@ -20,8 +42,12 @@ function App() {
         value={imageUrl}
         onChange={(e) => setImageUrl(e.target.value)}
       />
-      <button onClick={handleImageAnalysis}>Analyze Image</button>
+      <button onClick={handleImageAnalysis} disabled={isAnalyzing}>
+        {isAnalyzing ? 'Analyzing...' : 'Analyze Image'}
+      </button>
       <button onClick={handleImageGeneration}>Generate Image</button>
+      {isAnalyzing && <p>Processing image analysis...</p>}
+      {analysisResult && <p>Analysis Result: {analysisResult}</p>}
     </div>
   );
 }
