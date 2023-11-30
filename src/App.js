@@ -11,7 +11,7 @@ function DisplayResults({ imageUrl, analysisResult }) {
   );
 }
 
-function analyzeImage(imageUrl) {
+async function analyzeImage(imageUrl) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const analysisResult = 'Image analysis result';
