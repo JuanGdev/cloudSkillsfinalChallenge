@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { analyzeImage } from 'src/azure-image-analysis'; // Import the analyzeImage function
+import { analyzeImage } from './azure-image-analysis'; // Import the analyzeImage function from the local file
 
 function DisplayResults({ imageUrl, analysisResult }) {
   return (
