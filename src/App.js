@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { analyzeImage } from './azure-image-analysis';
+import { analyzeImage } from './azure-image-analysis'; // Import the analyzeImage function
 
 function DisplayResults({ imageUrl, analysisResult }) {
   return (
@@ -11,15 +11,6 @@ function DisplayResults({ imageUrl, analysisResult }) {
   );
 }
 
-async function analyzeImage(imageUrl) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      const analysisResult = 'Image analysis result';
-      resolve(analysisResult);
-    }, 2000);
-  });
-}
-
 function App() {
   const [imageUrl, setImageUrl] = useState('');
   const [analysisResult, setAnalysisResult] = useState('');
@@ -28,7 +19,7 @@ function App() {
   const handleImageAnalysis = async () => {
     setIsAnalyzing(true);
     try {
-      const result = await analyzeImage(imageUrl);
+      const result = await analyzeImage(imageUrl); // Call the analyzeImage function
       setAnalysisResult(result);
     } catch (error) {
       console.error('Error occurred during image analysis:', error);
@@ -63,5 +54,3 @@ function App() {
 }
 
 export default App;
-
-
